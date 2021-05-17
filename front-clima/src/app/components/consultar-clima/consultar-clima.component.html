@@ -1,0 +1,48 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="agregarClima()"
+  data-bs-target="#exampleModal">
+  Agregar clima
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Clima</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-agregar-clima (propagar)="consultarClima()" [climaEditar]="climaEditar" [modoAgregar]="agregarActivo">
+        </app-agregar-clima>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<table class="table animate__animated animate__bounce">
+  <thead>
+    <tr>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Tipo de cielo</th>
+      <th scope="col">Temperatura</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let clima of listaClima">
+      <td>{{clima.ciudad}}</td>
+      <td>{{clima.tipoCielo}}</td>
+      <td>{{clima.temperatura}}°C</td>
+      <td> <button type="button" class="btn btn-warning" (click)="editarClima(clima)" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Editar</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="eliminarClima(clima)"
+          data-bs-dismiss="modal">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>

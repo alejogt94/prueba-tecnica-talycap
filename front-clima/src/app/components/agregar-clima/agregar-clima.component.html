@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="agregarClima()">
+  <h6>LLene el formulario hasta que todos los campos esten verdes</h6>
+  <br>
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupSelect01" [class.invalido]="this.form.get('ciudad')?.invalid"
+      [class.valido]="this.form.get('ciudad')?.valid">Selecciona una ciudad</label>
+    <select formControlName="ciudad" class="form-select" id="inputGroupSelect01">
+      <option *ngFor="let ciudad of listaCiudades" value="{{ciudad.ciudadNombre}}">{{ciudad.ciudadNombre}}</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupSelect02" [class.invalido]="this.form.get('cielo')?.invalid"
+      [class.valido]="this.form.get('cielo')?.valid">Selecciona tipo de cielo</label>
+    <select formControlName="cielo" class="form-select" id="inputGroupSelect02">
+      <option *ngFor="let cielo of listaCielo" value="{{cielo.tipoCielo}}">{{cielo.tipoCielo}}</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default"
+      [class.invalido]="this.form.get('temperatura')?.invalid"
+      [class.valido]="this.form.get('temperatura')?.valid">Digite temperatura (°C)</span>
+    <input formControlName="temperatura" type="text" class="form-control" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-default" required>
+  </div>
+  <br>
+  <button type="submit" [disabled]="this.form.invalid" class="btn btn-primary" *ngIf="modoAgregar">Guardar
+    clima</button>
+  <button type="submit" [disabled]="this.form.invalid" class="btn btn-primary" *ngIf="!modoAgregar">Editar
+    clima</button>
+</form>
